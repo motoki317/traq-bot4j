@@ -70,4 +70,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-motoki317-traq4j</id>
+            <name>motoki317-traq4j</name>
+            <url>https://api.bintray.com/maven/motoki317/traq4j/traq-bot4j/;publish=1</url>
+        </repository>
+    </distributionManagement>
 </project>
