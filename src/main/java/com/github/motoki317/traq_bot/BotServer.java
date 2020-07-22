@@ -45,6 +45,7 @@ public class BotServer {
      * @param verificationToken Verification token to verify the request from traQ server.
      * @param accessToken Access token to fetch traQ API endpoints with.
      * @param port Port to listen on.
+     * @param eventHandlers Event handlers.
      * @throws IOException thrown on failure to binding to the given port.
      */
     public BotServer(String verificationToken, String accessToken, int port, EventHandlers eventHandlers) throws IOException {
