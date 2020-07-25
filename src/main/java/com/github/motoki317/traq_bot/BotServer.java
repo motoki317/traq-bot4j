@@ -9,6 +9,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
+import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,11 +45,12 @@ public class BotServer {
      * Creates a new traQ bot server.
      * @param verificationToken Verification token to verify the request from traQ server.
      * @param accessToken Access token to fetch traQ API endpoints with.
+     * @param traqApiBasePath If given, sets api base path.
      * @param port Port to listen on.
      * @param eventHandlers Event handlers.
      * @throws IOException thrown on failure to binding to the given port.
      */
-    public BotServer(String verificationToken, String accessToken, int port, EventHandlers eventHandlers) throws IOException {
+    public BotServer(String verificationToken, String accessToken, @Nullable String traqApiBasePath, int port, EventHandlers eventHandlers) throws IOException {
         if (verificationToken == null || accessToken == null) {
             throw new RuntimeException("Verification token or access token is null");
         }
@@ -57,6 +59,11 @@ public class BotServer {
 
         this.client = new ApiClient();
         this.client.addDefaultHeader("Authorization", "Bearer " + accessToken);
+
+        if (traqApiBasePath != null) {
+            this.client.setBasePath(traqApiBasePath);
+        }
+
         this.messageApi = new MessageApi(this.client);
 
         this.eventExecutors = Executors.newFixedThreadPool(5);
