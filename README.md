@@ -12,6 +12,9 @@ Requires Java 8+
 
 Make sure to use the latest version shown below.
 
+- traq4j
+[![GitHub release](https://img.shields.io/github/release/motoki317/traq4j.svg)](https://GitHub.com/motoki317/traq4j/releases/)
+- traq-bot4j
 [![GitHub release](https://img.shields.io/github/release/motoki317/traq-bot4j.svg)](https://GitHub.com/motoki317/traq-bot4j/releases/)
 
 ```xml
