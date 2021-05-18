@@ -6,12 +6,14 @@
 
     <groupId>com.github.motoki317</groupId>
     <artifactId>traq-bot4j</artifactId>
-    <version>3.0.3</version>
+    <version>3.1.0</version>
     <build>
         <plugins>
             <plugin>
+                <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -19,7 +21,9 @@
             </plugin>
             <plugin>
                 <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -31,13 +35,49 @@
             </plugin>
             <plugin>
                 <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <charset>UTF-8</charset>
+                    <source>8</source>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- https://github.com/github/maven-plugins -->
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <!-- Git commit message -->
+                    <message>Maven artifacts for ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <branch>refs/heads/mvn-repo</branch>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+
+                    <repositoryName>traq-bot4j</repositoryName>
+                    <repositoryOwner>motoki317</repositoryOwner>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -49,13 +89,13 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <jackson.version>2.11.0</jackson.version>
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <github.global.server>github</github.global.server>
     </properties>
 
     <repositories>
         <repository>
-            <id>jcenter</id>
-            <name>jcenter-bintray</name>
-            <url>https://jcenter.bintray.com</url>
+            <id>GitHub</id>
+            <url>https://raw.github.com/motoki317/traq4j/mvn-repo/</url>
         </repository>
     </repositories>
 
@@ -63,7 +103,7 @@
         <dependency>
             <groupId>com.github.motoki317</groupId>
             <artifactId>traq4j</artifactId>
-            <version>3.0.0</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -97,9 +137,10 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-motoki317-traq4j</id>
-            <name>motoki317-traq4j</name>
-            <url>https://api.bintray.com/maven/motoki317/traq4j/traq-bot4j/;publish=1</url>
+            <id>internal.repos</id>
+            <name>GitHub Maven Repository</name>
+            <!-- Local target/mvn-repo -->
+            <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
     </distributionManagement>
 </project>
