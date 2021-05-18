@@ -4,7 +4,7 @@
         <server>
             <id>github</id>
             <username>motoki317</username>
-            <password>${env.GITHUB_TOKEN}</password>
+            <password>${env.PAT}</password>
         </server>
     </servers>
 </settings>
