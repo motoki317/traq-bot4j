@@ -21,11 +21,11 @@ Make sure to use the latest version shown below.
 <project>
     <repositories>
         <repository>
-            <id>GitHub</id>
+            <id>GitHub traq4j</id>
             <url>https://raw.github.com/motoki317/traq4j/mvn-repo/</url>
         </repository>
         <repository>
-            <id>GitHub</id>
+            <id>GitHub traq-bot4j</id>
             <url>https://raw.github.com/motoki317/traq-bot4j/mvn-repo/</url>
         </repository>
     </repositories>
