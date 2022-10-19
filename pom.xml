@@ -87,7 +87,7 @@
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <jackson.version>2.13.3</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <github.global.server>github</github.global.server>
     </properties>
